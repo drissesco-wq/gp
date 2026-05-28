@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gov.party — World Government • Apply for Your Right to Party</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+    body { font-family: 'Roboto Condensed', system-ui, sans-serif; }
+    .gov-header { background: linear-gradient(to right, #001f3f, #003399); }
+    .seal { animation: spin-slow 60s linear infinite; }
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+  <!-- HEADER -->
+  <header class="gov-header text-white py-4 shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <!-- World Government Seal -->
+        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center border-4 border-yellow-400 seal">
+          <div class="text-center text-[#001f3f] text-[10px] font-bold leading-none">
+            WORLD<br>GOV<br>PARTY
+          </div>
+        </div>
+        <div>
+          <h1 class="text-4xl font-bold tracking-widest">GOV.PARTY</h1>
+          <p class="text-xs uppercase tracking-[3px]">World Government • Department of Global Merriment & Regulated Celebrations • New York, Earth</p>
+        </div>
+      </div>
+      <nav class="flex gap-8 text-lg">
+        <a href="#apply" class="hover:underline">Apply Now</a>
+        <a href="#news" class="hover:underline">Global Decrees</a>
+        <a href="#shame" class="hover:underline">Hall of Shame</a>
+        <a href="#" class="hover:underline">One World, One Permit</a>
+      </nav>
+      <div class="text-xs bg-white/20 px-4 py-1 rounded border border-white/30">
+        Headquarters: New York, NY • Earth • 2026
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="bg-white border-b-8 border-yellow-400 py-20">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <p class="uppercase text-red-600 font-bold tracking-widest mb-2">OFFICIAL WORLD GOVERNMENT WEBSITE</p>
+      <h2 class="text-6xl font-bold leading-none mb-6">
+        Because even your right to party<br>now requires World Government approval.
+      </h2>
+      <p class="text-2xl text-slate-600 mb-10">Form WG-69-B-420 • Global Right to Party Permit Application</p>
+      <a href="#apply" 
+         class="inline-block bg-red-600 hover:bg-red-700 text-white text-3xl font-bold px-12 py-6 rounded-xl shadow-xl transition">
+        FILE YOUR GLOBAL PARTY APPLICATION →
+      </a>
+      <p class="text-xs mt-8 text-slate-500">Processing time: 6–8 weeks • Non-refundable fee: $47.83 USD + planetary convenience fee</p>
+    </div>
+  </div>
+
+  <!-- APPLICATION FORM -->
+  <section id="apply" class="max-w-4xl mx-auto px-6 py-16">
+    <div class="bg-white border-4 border-slate-800 rounded-2xl shadow-2xl p-10">
+      <h2 class="text-4xl font-bold mb-2 text-center">Global Party Permit Application</h2>
+      <p class="text-center text-slate-500 mb-10">World Government • Department of Global Merriment (DGM)</p>
+
+      <form id="partyForm" class="space-y-10">
+        <!-- Step 1 -->
+        <div class="border-b pb-10">
+          <h3 class="font-bold text-xl mb-4 flex items-center gap-2"><i class="fa-solid fa-user"></i> Global Citizen Information</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium mb-1">Full Legal Name (as registered with World Gov)</label>
+              <input type="text" id="name" class="w-full border border-slate-300 rounded px-4 py-3" placeholder="Alex Rivera" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">World Government Citizen ID</label>
+              <input type="text" id="id" class="w-full border border-slate-300 rounded px-4 py-3" placeholder="WG-478291" maxlength="9" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border-b pb-10">
+          <h3 class="font-bold text-xl mb-4 flex items-center gap-2"><i class="fa-solid fa-calendar"></i> Planetary Event Details</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium mb-1">Date of Proposed Party (UTC)</label>
+              <input type="date" id="date" class="w-full border border-slate-300 rounded px-4 py-3" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Expected Global Attendance</label>
+              <input type="number" id="attendance" class="w-full border border-slate-300 rounded px-4 py-3" placeholder="247" required>
+            </div>
+          </div>
+          <div class="mt-6">
+            <label class="block text-sm font-medium mb-1">Will there be amplified sound, fireworks, or synchronized dancing after 22:00 UTC?</label>
+            <div class="flex gap-6">
+              <label class="flex items-center gap-2"><input type="radio" name="noise" value="yes" checked> Yes (submit 17 environmental impact forms)</label>
+              <label class="flex items-center gap-2"><input type="radio" name="noise" value="no"> No (World Gov still doesn’t believe you)</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div>
+          <h3 class="font-bold text-xl mb-4 flex items-center gap-2"><i class="fa-solid fa-exclamation-triangle"></i> Global Risk Assessment</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <label>Will there be a piñata?</label>
+              <select id="pinata" class="border border-slate-300 rounded px-4 py-2">
+                <option>No</option>
+                <option>Yes (interplanetary debris hazard)</option>
+              </select>
+            </div>
+            <div class="flex justify-between items-center">
+              <label>Anticipated empty beverage containers (global plastic score)</label>
+              <input type="number" id="cans" value="312" class="border border-slate-300 rounded px-4 py-2 w-24 text-center">
+            </div>
+            <div class="flex justify-between items-center">
+              <label>Will this party trigger an International Incident or 311-equivalent complaint?</label>
+              <input type="text" id="complaints" value="Definitely" class="border border-slate-300 rounded px-4 py-2">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-red-600 hover:bg-red-700 text-white text-3xl font-bold py-8 rounded-2xl shadow-xl transition mt-8">
+          SUBMIT TO WORLD GOVERNMENT BUREAUCRACY →
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- RESULTS MODAL -->
+  <div id="resultModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div id="resultContent" class="bg-white max-w-lg w-full mx-6 rounded-3xl p-10 text-center"></div>
+  </div>
+
+  <!-- GLOBAL DECREES (News) -->
+  <section id="news" class="bg-slate-900 text-white py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-8 text-center">Latest World Government Decrees</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white/10 p-6 rounded-2xl">
+          <p class="text-xs text-yellow-400">MAY 27, 2026</p>
+          <p class="font-bold text-xl mt-2">New Global Curfew: No Fun After 22:00 UTC Anywhere on Earth</p>
+          <p class="text-sm mt-4">“Public order must be maintained across all time zones,” says the World Party Commissioner.</p>
+        </div>
+        <div class="bg-white/10 p-6 rounded-2xl">
+          <p class="text-xs text-yellow-400">MAY 26, 2026</p>
+          <p class="font-bold text-xl mt-2">World Government Passes “Right to Party Treaty” (but only on alternate Tuesdays)</p>
+          <p class="text-sm mt-4">Enforcement teams already dispatched to every major city.</p>
+        </div>
+        <div class="bg-white/10 p-6 rounded-2xl">
+          <p class="text-xs text-yellow-400">MAY 25, 2026</p>
+          <p class="font-bold text-xl mt-2">New Rule: All parties require pre-approved playlist and synchronized dance protocol</p>
+          <p class="text-sm mt-4">“Spontaneous fun is now a regulated activity,” New York HQ confirms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HALL OF SHAME -->
+  <section id="shame" class="max-w-4xl mx-auto px-6 py-16">
+    <h2 class="text-4xl font-bold mb-8 text-center">Hall of Shame: Parties Shut Down by World Government Agents</h2>
+    <ul class="space-y-6 text-lg">
+      <li class="flex gap-4"><span class="font-mono text-red-600">WG-2026-NYC-0412</span> New York rooftop party — shut down for “excessive skyline happiness”</li>
+      <li class="flex gap-4"><span class="font-mono text-red-600">WG-2025-PAR-8923</span> Paris balcony gathering — cited for violating Global Noise Treaty</li>
+      <li class="flex gap-4"><span class="font-mono text-red-600">WG-2026-TOK-0019</span> Tokyo karaoke night — fined for “unauthorized group euphoria”</li>
+      <li class="flex gap-4"><span class="font-mono text-red-600">WG-2025-RIO-3371</span> Rio beach bonfire — agents confiscated all marshmallows</li>
+    </ul>
+  </section>
+
+  <footer class="bg-slate-900 text-white/70 text-xs py-8 text-center">
+    <p>This is satire. But the World Government paperwork is (almost) real. Please party responsibly and file your global forms 6–8 weeks in advance.</p>
+    <p class="mt-2">© 2026 World Government • Department of Global Merriment • Not affiliated with any actual planet-wide authority (yet)</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('partyForm');
+    const modal = document.getElementById('resultModal');
+    const content = document.getElementById('resultContent');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value || "Global Citizen";
+      const attendance = parseInt(document.getElementById('attendance').value) || 247;
+      
+      const outcomes = [
+        {
+          title: "✅ APPROVED BY WORLD GOV",
+          message: `Congratulations, ${name}! Your party of ${attendance} Earthlings has been approved.<br><br>Conditions:<br>• No dancing after 22:00 UTC<br>• All laughter must be logged with New York HQ<br>• One (1) designated sober planetary ambassador required`,
+          color: "text-green-600"
+        },
+        {
+          title: "❌ DENIED BY WORLD GOV",
+          message: `Sorry ${name}. Your application has been rejected by the Department of Global Merriment.<br><br>Reason: “Vibe classified as a threat to planetary order.”<br><br>Appeal to New York HQ (good luck).`,
+          color: "text-red-600"
+        },
+        {
+          title: "⏳ PENDING WORLD REVIEW",
+          message: `Your application is under review at World Government Headquarters in New York.<br><br>Estimated wait time: 6–8 weeks.<br><br>In the meantime, please maintain bureaucratic silence.`,
+          color: "text-amber-600"
+        }
+      ];
+      
+      const result = outcomes[Math.floor(Math.random() * outcomes.length)];
+      
+      content.innerHTML = `
+        <h2 class="text-5xl font-bold ${result.color} mb-6">${result.title}</h2>
+        <p class="text-xl">${result.message}</p>
+        <button onclick="modal.classList.add('hidden')" 
+                class="mt-10 px-10 py-4 bg-slate-800 hover:bg-slate-900 text-white rounded-2xl font-bold">
+          CLOSE AND RETURN TO EARTH
+        </button>
+      `;
+      modal.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
