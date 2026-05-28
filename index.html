@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Official World Government • Department of Global Merriment • File your Global Right to Party Permit (WG-69-B-420)">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="gov.party — World Government • Apply for Your Right to Party">
+  <meta property="og:description" content="Because even your right to party now requires World Government approval. Form WG-69-B-420.">
+  <meta property="og:url" content="https://gov.party">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://gov.party/og-image.jpg"> <!-- replace with your own image URL later -->
+  <meta name="twitter:card" content="summary_large_image">
+
   <title>gov.party — World Government • Apply for Your Right to Party</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -12,10 +21,12 @@
     .gov-header { background: linear-gradient(to right, #001f3f, #003399); }
     .seal { animation: spin-slow 60s linear infinite; }
     @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    
+    /* Confetti canvas */
+    #confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
   </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
-
   <!-- HEADER -->
   <header class="gov-header text-white py-4 shadow-lg">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -29,27 +40,36 @@
           <p class="text-xs uppercase tracking-[3px]">World Government • Department of Global Merriment & Regulated Celebrations • New York, Earth</p>
         </div>
       </div>
-      <nav class="flex gap-8 text-lg">
+
+      <nav class="hidden md:flex gap-8 text-lg">
         <a href="#apply" class="hover:underline">Apply Now</a>
         <a href="#news" class="hover:underline">Global Decrees</a>
         <a href="#shame" class="hover:underline">Hall of Shame</a>
         <a href="#" class="hover:underline">One World, One Permit</a>
       </nav>
-      <div class="text-xs bg-white/20 px-4 py-1 rounded border border-white/30">
-        Headquarters: New York, NY • Earth • 2026
+
+      <!-- Live Counter -->
+      <div class="flex items-center gap-3">
+        <div class="text-xs bg-white/20 px-4 py-1 rounded border border-white/30 flex items-center gap-2">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          LIVE: <span id="liveCounter" class="font-mono font-bold">4,872</span> parties under review
+        </div>
+        <div class="text-xs bg-white/20 px-4 py-1 rounded border border-white/30">
+          Headquarters: New York, NY • Earth • 2026
+        </div>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
-  <div class="bg-white border-b-8 border-yellow-400 py-20">
+  <div class="bg-white border-b-8 border-yellow-400 py-16 md:py-20">
     <div class="max-w-4xl mx-auto text-center px-6">
       <p class="uppercase text-red-600 font-bold tracking-widest mb-2">OFFICIAL WORLD GOVERNMENT WEBSITE</p>
-      <h2 class="text-6xl font-bold leading-none mb-6">
+      <h2 class="text-5xl md:text-6xl font-bold leading-none mb-6">
         Because even your right to party<br>now requires World Government approval.
       </h2>
       <p class="text-2xl text-slate-600 mb-10">Form WG-69-B-420 • Global Right to Party Permit Application</p>
-      <a href="#apply" 
+      <a href="#apply"
          class="inline-block bg-red-600 hover:bg-red-700 text-white text-3xl font-bold px-12 py-6 rounded-xl shadow-xl transition">
         FILE YOUR GLOBAL PARTY APPLICATION →
       </a>
@@ -62,7 +82,7 @@
     <div class="bg-white border-4 border-slate-800 rounded-2xl shadow-2xl p-10">
       <h2 class="text-4xl font-bold mb-2 text-center">Global Party Permit Application</h2>
       <p class="text-center text-slate-500 mb-10">World Government • Department of Global Merriment (DGM)</p>
-
+      
       <form id="partyForm" class="space-y-10">
         <div class="border-b pb-10">
           <h3 class="font-bold text-xl mb-4 flex items-center gap-2"><i class="fa-solid fa-user"></i> Global Citizen Information</h3>
@@ -105,8 +125,8 @@
             <div class="flex justify-between items-center">
               <label>Will there be a piñata?</label>
               <select id="pinata" class="border border-slate-300 rounded px-4 py-2">
-                <option>No</option>
-                <option>Yes (interplanetary debris hazard)</option>
+                <option value="no">No</option>
+                <option value="yes">Yes (interplanetary debris hazard)</option>
               </select>
             </div>
             <div class="flex justify-between items-center">
@@ -114,15 +134,16 @@
               <input type="number" id="cans" value="312" class="border border-slate-300 rounded px-4 py-2 w-24 text-center">
             </div>
             <div class="flex justify-between items-center">
-              <label>Will this party trigger an International Incident or 311-equivalent complaint?</label>
+              <label>Will this party trigger an International Incident?</label>
               <input type="text" id="complaints" value="Definitely" class="border border-slate-300 rounded px-4 py-2">
             </div>
           </div>
         </div>
 
         <button type="submit"
-                class="w-full bg-red-600 hover:bg-red-700 text-white text-3xl font-bold py-8 rounded-2xl shadow-xl transition mt-8">
-          SUBMIT TO WORLD GOVERNMENT BUREAUCRACY →
+                id="submitBtn"
+                class="w-full bg-red-600 hover:bg-red-700 text-white text-3xl font-bold py-8 rounded-2xl shadow-xl transition mt-8 flex items-center justify-center gap-3">
+          <span id="btnText">SUBMIT TO WORLD GOVERNMENT BUREAUCRACY →</span>
         </button>
       </form>
     </div>
@@ -133,23 +154,26 @@
     <div id="resultContent" class="bg-white max-w-lg w-full mx-6 rounded-3xl p-10 text-center"></div>
   </div>
 
+  <!-- Confetti Canvas -->
+  <canvas id="confetti" class="hidden"></canvas>
+
   <!-- GLOBAL DECREES -->
   <section id="news" class="bg-slate-900 text-white py-16">
     <div class="max-w-4xl mx-auto px-6">
       <h2 class="text-4xl font-bold mb-8 text-center">Latest World Government Decrees</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-white/10 p-6 rounded-2xl">
-          <p class="text-xs text-yellow-400">MAY 27, 2026</p>
+          <p class="text-xs text-yellow-400">MAY 28, 2026</p>
           <p class="font-bold text-xl mt-2">New Global Curfew: No Fun After 22:00 UTC Anywhere on Earth</p>
           <p class="text-sm mt-4">“Public order must be maintained across all time zones,” says the World Party Commissioner.</p>
         </div>
         <div class="bg-white/10 p-6 rounded-2xl">
-          <p class="text-xs text-yellow-400">MAY 26, 2026</p>
+          <p class="text-xs text-yellow-400">MAY 27, 2026</p>
           <p class="font-bold text-xl mt-2">World Government Passes “Right to Party Treaty” (but only on alternate Tuesdays)</p>
           <p class="text-sm mt-4">Enforcement teams already dispatched to every major city.</p>
         </div>
         <div class="bg-white/10 p-6 rounded-2xl">
-          <p class="text-xs text-yellow-400">MAY 25, 2026</p>
+          <p class="text-xs text-yellow-400">MAY 26, 2026</p>
           <p class="font-bold text-xl mt-2">New Rule: All parties require pre-approved playlist and synchronized dance protocol</p>
           <p class="text-sm mt-4">“Spontaneous fun is now a regulated activity,” New York HQ confirms.</p>
         </div>
@@ -174,46 +198,147 @@
   </footer>
 
   <script>
+    // Live counter (increases every few seconds for fun)
+    let count = 4872;
+    setInterval(() => {
+      count += Math.floor(Math.random() * 7) + 3;
+      document.getElementById('liveCounter').textContent = count.toLocaleString('en-US');
+    }, 2800);
+
+    // Simple confetti function
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti');
+      canvas.classList.remove('hidden');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+      const particles = [];
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height - canvas.height;
+          this.size = Math.random() * 12 + 8;
+          this.speed = Math.random() * 6 + 4;
+          this.angle = Math.random() * 360;
+          this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+        update() {
+          this.y += this.speed;
+          this.angle += 8;
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.angle * Math.PI / 180);
+          ctx.fillStyle = this.color;
+          ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+          ctx.restore();
+        }
+      }
+
+      for (let i = 0; i < 280; i++) {
+        particles.push(new Particle());
+      }
+
+      let frame = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p, i) => {
+          p.update();
+          p.draw();
+          if (p.y > canvas.height) particles.splice(i, 1);
+        });
+        frame++;
+        if (frame < 180 && particles.length > 0) requestAnimationFrame(animate);
+        else canvas.classList.add('hidden');
+      }
+      animate();
+    }
+
+    // Form handling with smart logic + processing delay
     const form = document.getElementById('partyForm');
     const modal = document.getElementById('resultModal');
     const content = document.getElementById('resultContent');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      const name = document.getElementById('name').value || "Global Citizen";
-      const attendance = parseInt(document.getElementById('attendance').value) || 247;
-      
-      const outcomes = [
-        {
-          title: "✅ APPROVED BY WORLD GOV",
-          message: `Congratulations, ${name}! Your party of ${attendance} Earthlings has been approved.<br><br>Conditions:<br>• No dancing after 22:00 UTC<br>• All laughter must be logged with New York HQ<br>• One (1) designated sober planetary ambassador required`,
-          color: "text-green-600"
-        },
-        {
-          title: "❌ DENIED BY WORLD GOV",
-          message: `Sorry ${name}. Your application has been rejected by the Department of Global Merriment.<br><br>Reason: “Vibe classified as a threat to planetary order.”<br><br>Appeal to New York HQ (good luck).`,
-          color: "text-red-600"
-        },
-        {
-          title: "⏳ PENDING WORLD REVIEW",
-          message: `Your application is under review at World Government Headquarters in New York.<br><br>Estimated wait time: 6–8 weeks.<br><br>In the meantime, please maintain bureaucratic silence.`,
-          color: "text-amber-600"
+
+      // Show processing state
+      const originalText = btnText.innerHTML;
+      btnText.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> TRANSMITTING TO NEW YORK HQ…`;
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        const name = document.getElementById('name').value || "Global Citizen";
+        const attendance = parseInt(document.getElementById('attendance').value) || 247;
+        const noise = document.querySelector('input[name="noise"]:checked').value;
+        const pinata = document.getElementById('pinata').value;
+        const cans = parseInt(document.getElementById('cans').value) || 0;
+
+        // Smart chaos scoring
+        let chaos = 0;
+        if (attendance > 800) chaos += 4;
+        else if (attendance > 400) chaos += 2;
+        if (noise === 'yes') chaos += 3;
+        if (pinata === 'yes') chaos += 3;
+        if (cans > 500) chaos += 2;
+
+        const outcomes = [
+          {
+            title: "✅ APPROVED BY WORLD GOV",
+            message: `Congratulations, ${name}! Your party of ${attendance} Earthlings has been approved.<br><br>Conditions:<br>• No dancing after 22:00 UTC<br>• All laughter must be logged with New York HQ<br>• One (1) designated sober planetary ambassador required`,
+            color: "text-green-600"
+          },
+          {
+            title: "❌ DENIED BY WORLD GOV",
+            message: `Sorry ${name}. Your application has been rejected by the Department of Global Merriment.<br><br>Reason: “Vibe classified as a threat to planetary order.”<br><br>Appeal to New York HQ (good luck).`,
+            color: "text-red-600"
+          },
+          {
+            title: "⏳ PENDING WORLD REVIEW",
+            message: `Your application is under review at World Government Headquarters in New York.<br><br>Estimated wait time: 6–8 weeks.<br><br>In the meantime, please maintain bureaucratic silence.`,
+            color: "text-amber-600"
+          }
+        ];
+
+        // Bias the outcome based on chaos score
+        let result;
+        if (chaos >= 7) {
+          result = outcomes[1]; // heavy denial bias
+        } else if (chaos >= 4) {
+          result = Math.random() < 0.6 ? outcomes[1] : outcomes[2];
+        } else {
+          result = Math.random() < 0.65 ? outcomes[0] : outcomes[2];
         }
-      ];
-      
-      const result = outcomes[Math.floor(Math.random() * outcomes.length)];
-      
-      content.innerHTML = `
-        <h2 class="text-5xl font-bold ${result.color} mb-6">${result.title}</h2>
-        <p class="text-xl">${result.message}</p>
-        <button onclick="modal.classList.add('hidden')" 
-                class="mt-10 px-10 py-4 bg-slate-800 hover:bg-slate-900 text-white rounded-2xl font-bold">
-          CLOSE AND RETURN TO EARTH
-        </button>
-      `;
-      modal.classList.remove('hidden');
+
+        // Render result
+        content.innerHTML = `
+          <h2 class="text-5xl font-bold ${result.color} mb-6">${result.title}</h2>
+          <p class="text-xl">${result.message}</p>
+          <button onclick="modal.classList.add('hidden'); document.getElementById('confetti').classList.add('hidden');"
+                  class="mt-10 px-10 py-4 bg-slate-800 hover:bg-slate-900 text-white rounded-2xl font-bold">
+            CLOSE AND RETURN TO EARTH
+          </button>
+        `;
+        modal.classList.remove('hidden');
+
+        // Confetti only on approval
+        if (result.title.includes("APPROVED")) {
+          launchConfetti();
+        }
+
+        // Reset button
+        btnText.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 1850); // bureaucratic delay
     });
+
+    // Tailwind script already loaded
   </script>
 </body>
 </html>
